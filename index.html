@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nidhi Pravin Patil - Web Developer Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.7;
+            color: #2c3e50;
+            background: #f8f9fa;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        /* Fixed Sidebar Navigation */
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 280px;
+            height: 100vh;
+            background: linear-gradient(180deg, #2c3e50 0%, #34495e 100%);
+            padding: 2rem 1.5rem;
+            z-index: 1000;
+            box-shadow: 2px 0 15px rgba(0,0,0,0.1);
+        }
+
+        .sidebar-header {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 2px solid #3498db;
+        }
+
+        .profile-image {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #3498db, #e74c3c);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            color: white;
+            margin: 0 auto 1rem;
+            font-weight: bold;
+        }
+
+        .sidebar h2 {
+            color: white;
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .sidebar .role {
+            color: #3498db;
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        .nav-menu {
+            list-style: none;
+        }
+
+        .nav-menu li {
+            margin-bottom: 0.5rem;
+        }
+
+        .nav-menu a {
+            display: block;
+            color: #ecf0f1;
+            text-decoration: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .nav-menu a:hover, .nav-menu a.active {
+            background: #3498db;
+            color: white;
+            transform: translateX(5px);
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-left: 280px;
+            padding: 2rem 0;
+        }
+
+        .section {
+            background: white;
+            margin-bottom: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            overflow: hidden;
+        }
+
+        .section-header {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+            padding: 1.5rem 2rem;
+            font-size: 1.8rem;
+            font-weight: 600;
+        }
+
+        .section-content {
+            padding: 2rem;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+            padding: 4rem 2rem;
+        }
+
+        .hero-title {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            opacity: 0.9;
+        }
+
+        .hero-age {
+            font-size: 1.1rem;
+            opacity: 0.8;
+            margin-bottom: 2rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 2px solid rgba(255,255,255,0.3);
+        }
+
+        .cta-button:hover {
+            background: white;
+            color: #667eea;
+        }
+
+        /* About Section */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 3rem;
+            align-items: start;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        /* Experience Section */
+        .experience-item {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid #3498db;
+        }
+
+        .experience-title {
+            font-size: 1.3rem;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .experience-company {
+            color: #3498db;
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .skill-category {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+            transition: transform 0.3s ease;
+            border: 1px solid #e9ecef;
+        }
+
+        .skill-category:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .skill-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .skill-title {
+            font-size: 1.2rem;
+            color: #2c3e50;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .skill-list {
+            color: #7f8c8d;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border: 1px solid #e9ecef;
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 35px rgba(0,0,0,0.15);
+        }
+
+        .project-header {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .project-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .project-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-tech {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .project-body {
+            padding: 1.5rem;
+        }
+
+        .project-description {
+            color: #5a6c7d;
+            line-height: 1.6;
+        }
+
+        /* Contact Section */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .contact-info {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 12px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            margin-right: 1rem;
+            flex-shrink: 0;
+        }
+
+        .contact-details h4 {
+            color: #2c3e50;
+            margin-bottom: 0.25rem;
+        }
+
+        .contact-details p {
+            color: #7f8c8d;
+            font-size: 0.95rem;
+        }
+
+        .availability {
+            background: linear-gradient(135deg, #27ae60, #2ecc71);
+            color: white;
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .availability h3 {
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Print styles */
+        @media print {
+            .sidebar { display: none; }
+            .main-content { margin-left: 0; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Sidebar Navigation -->
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <div class="profile-image">NP</div>
+            <h2>Nidhi Pravin Patil</h2>
+            <p class="role">Web Developer</p>
+        </div>
+        <ul class="nav-menu">
+            <li><a href="#home" onclick="scrollToSection('home')" class="active">🏠 Home</a></li>
+            <li><a href="#about" onclick="scrollToSection('about')">👤 About Me</a></li>
+            <li><a href="#experience" onclick="scrollToSection('experience')">💼 Experience</a></li>
+            <li><a href="#skills" onclick="scrollToSection('skills')">🛠️ Skills</a></li>
+            <li><a href="#projects" onclick="scrollToSection('projects')">📁 Projects</a></li>
+            <li><a href="#contact" onclick="scrollToSection('contact')">📞 Contact</a></li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="container">
+            <!-- Hero Section -->
+            <section id="home" class="section">
+                <div class="hero-section">
+                    <h1 class="hero-title">Nidhi Pravin Patil</h1>
+                    <p class="hero-subtitle">Full-Stack Web Developer & Java Programmer</p>
+                    <p class="hero-age">19 Years Old | Passionate Developer</p>
+                    <p style="margin-bottom: 2rem; font-size: 1.1rem;">Building innovative web solutions with modern technologies</p>
+                    <a href="#projects" class="cta-button" onclick="scrollToSection('projects')">View My Projects</a>
+                </div>
+            </section>
+
+            <!-- About Section -->
+            <section id="about" class="section">
+                <div class="section-header">About Me</div>
+                <div class="section-content">
+                    <div class="about-grid">
+                        <div class="about-text">
+                            <p><strong>Hello! I'm Nidhi Pravin Patil</strong>, a 19-year-old passionate web developer with a strong foundation in programming and database management. My journey in technology started with a curiosity about how websites work, and it has evolved into a deep passion for creating meaningful digital experiences.</p>
+                            
+                            <p>I specialize in <strong>Java programming</strong>, <strong>Python development</strong>, and <strong>MySQL database management</strong>. My experience spans across various domains including game development, e-commerce platforms, and management systems. I believe in writing clean, efficient code that solves real-world problems.</p>
+                            
+                            <p>Currently, I'm expanding my skills in full-stack development and exploring new technologies to stay ahead in this rapidly evolving field. I'm always eager to take on new challenges and learn from every project I work on.</p>
+                        </div>
+                        <div class="stats-grid">
+                            <div class="stat-card">
+                                <span class="stat-number">5+</span>
+                                <span class="stat-label">Projects Completed</span>
+                            </div>
+                            <div class="stat-card">
+                                <span class="stat-number">19</span>
+                                <span class="stat-label">Years Old</span>
+                            </div>
+                            <div class="stat-card">
+                                <span class="stat-number">3+</span>
+                                <span class="stat-label">Programming Languages</span>
+                            </div>
+                            <div class="stat-card">
+                                <span class="stat-number">2+</span>
+                                <span class="stat-label">Internship Experience</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Experience Section -->
+            <section id="experience" class="section">
+                <div class="section-header">Professional Experience</div>
+                <div class="section-content">
+                    <div class="experience-item">
+                        <h3 class="experience-title">Web Development Intern</h3>
+                        <p class="experience-company">Prodigy InfoTech</p>
+                        <p>Gained hands-on experience in web development, working on real-world projects and collaborating with experienced developers. Enhanced my skills in project management, version control, and client communication while contributing to multiple web applications.</p>
+                    </div>
+                    <div class="experience-item">
+                        <h3 class="experience-title">Software Development Intern</h3>
+                        <p class="experience-company">Book Hub</p>
+                        <p>Developed and maintained book management systems, worked with database optimization, and contributed to frontend development. Improved my understanding of full-stack development processes and gained experience in agile development methodologies.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Skills Section -->
+            <section id="skills" class="section">
+                <div class="section-header">Skills & Expertise</div>
+                <div class="section-content">
+                    <div class="skills-grid">
+                        <div class="skill-category">
+                            <div class="skill-icon">☕</div>
+                            <h3 class="skill-title">Java Programming</h3>
+                            <p class="skill-list">Object-Oriented Programming<br>Spring Framework<br>Data Structures & Algorithms<br>Desktop Applications</p>
+                        </div>
+                        <div class="skill-category">
+                            <div class="skill-icon">🐍</div>
+                            <h3 class="skill-title">Python Development</h3>
+                            <p class="skill-list">Web Development<br>Django Framework<br>Automation Scripts<br>Data Analysis</p>
+                        </div>
+                        <div class="skill-category">
+                            <div class="skill-icon">🗄️</div>
+                            <h3 class="skill-title">Database Management</h3>
+                            <p class="skill-list">MySQL Database Design<br>Query Optimization<br>Data Modeling<br>Stored Procedures</p>
+                        </div>
+                        <div class="skill-category">
+                            <div class="skill-icon">🌐</div>
+                            <h3 class="skill-title">Web Technologies</h3>
+                            <p class="skill-list">HTML5 & CSS3<br>JavaScript ES6+<br>Responsive Design<br>Bootstrap Framework</p>
+                        </div>
+                        <div class="skill-category">
+                            <div class="skill-icon">🎮</div>
+                            <h3 class="skill-title">Game Development</h3>
+                            <p class="skill-list">Interactive Games<br>Game Logic Design<br>User Interface<br>Animation Effects</p>
+                        </div>
+                        <div class="skill-category">
+                            <div class="skill-icon">💼</div>
+                            <h3 class="skill-title">System Development</h3>
+                            <p class="skill-list">Management Systems<br>E-commerce Platforms<br>CRUD Operations<br>System Architecture</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Projects Section -->
+            <section id="projects" class="section">
+                <div class="section-header">Featured Projects</div>
+                <div class="section-content">
+                    <div class="projects-grid">
+                        <div class="project-card">
+                            <div class="project-header">
+                                <div class="project-icon">⭕</div>
+                                <h3 class="project-title">Tic Tac Toe Game</h3>
+                                <p class="project-tech">JavaScript • HTML5 • CSS3</p>
+                            </div>
+                            <div class="project-body">
+                                <p class="project-description">Interactive tic-tac-toe game with clean UI, score tracking, and multiple game modes. Features smooth animations, responsive design for all devices, and an AI opponent with different difficulty levels.</p>
+                            </div>
+                        </div>
+
+                        <div class="project-card">
+                            <div class="project-header">
+                                <div class="project-icon">📚</div>
+                                <h3 class="project-title">Book Hub Website</h3>
+                                <p class="project-tech">Java • MySQL • Bootstrap</p>
+                            </div>
+                            <div class="project-body">
+                                <p class="project-description">Comprehensive book management platform with user authentication, book catalog, advanced search functionality, and user reviews. Developed during my internship at Book Hub with full CRUD operations.</p>
+                            </div>
+                        </div>
+
+                        <div class="project-card">
+                            <div class="project-header">
+                                <div class="project-icon">🏨</div>
+                                <h3 class="project-title">Hotel Management System</h3>
+                                <p class="project-tech">Python • Django • MySQL</p>
+                            </div>
+                            <div class="project-body">
+                                <p class="project-description">Full-featured hotel management system with room booking, customer management, automated billing system, and staff administration. Includes comprehensive reporting and analytics features.</p>
+                            </div>
+                        </div>
+
+                        <div class="project-card">
+                            <div class="project-header">
+                                <div class="project-icon">🎓</div>
+                                <h3 class="project-title">University Management System</h3>
+                                <p class="project-tech">Java • MySQL • Swing GUI</p>
+                            </div>
+                            <div class="project-body">
+                                <p class="project-description">Comprehensive university management solution handling student enrollment, course management, faculty administration, and academic records with role-based access controls and secure authentication.</p>
+                            </div>
+                        </div>
+
+                        <div class="project-card">
+                            <div class="project-header">
+                                <div class="project-icon">💎</div>
+                                <h3 class="project-title">Jewellery E-Commerce Website</h3>
+                                <p class="project-tech">HTML • CSS • JavaScript • MySQL</p>
+                            </div>
+                            <div class="project-body">
+                                <p class="project-description">Elegant e-commerce website for jewelry with product catalog, shopping cart functionality, user accounts, and secure payment integration. Features stunning visual design and smooth user experience.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Contact Section -->
+            <section id="contact" class="section">
+                <div class="section-header">Let's Connect</div>
+                <div class="section-content">
+                    <div class="contact-grid">
+                        <div class="contact-info">
+                            <div class="contact-item">
+                                <div class="contact-icon">👤</div>
+                                <div class="contact-details">
+                                    <h4>Full Name</h4>
+                                    <p>Nidhi Pravin Patil</p>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <div class="contact-icon">📱</div>
+                                <div class="contact-details">
+                                    <h4>Phone Number</h4>
+                                    <p>+91 7058210011</p>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <div class="contact-icon">🎂</div>
+                                <div class="contact-details">
+                                    <h4>Age</h4>
+                                    <p>19 Years Old</p>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <div class="contact-icon">💼</div>
+                                <div class="contact-details">
+                                    <h4>Experience</h4>
+                                    <p>2+ Internships Completed</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="availability">
+                            <h3>Available for Opportunities</h3>
+                            <p style="margin-bottom: 1.5rem;">I'm actively seeking internship and junior developer positions where I can contribute my skills and continue learning in a dynamic environment.</p>
+                            <p><strong>Interested in:</strong></p>
+                            <p>• Full-Stack Development Roles<br>
+                               • Java Development Positions<br>
+                               • Database Administration<br>
+                               • Web Development Projects</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script>
+        function scrollToSection(sectionId) {
+            const element = document.getElementById(sectionId);
+            const offset = element.offsetTop - 20;
+            
+            window.scrollTo({
+                top: offset,
+                behavior: 'smooth'
+            });
+            
+            // Update active navigation
+            document.querySelectorAll('.nav-menu a').forEach(link => {
+                link.classList.remove('active');
+            });
+            document.querySelector(`a[href="#${sectionId}"]`).classList.add('active');
+        }
+
+        // Auto-update active navigation on scroll
+        window.addEventListener('scroll', function() {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-menu a');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= sectionTop - 100) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Add smooth animations for project cards
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Initialize animations
+        document.addEventListener('DOMContentLoaded', function() {
+            const animatedElements = document.querySelectorAll('.project-card, .skill-category');
+            animatedElements.forEach(element => {
+                element.style.opacity = '0';
+                element.style.transform = 'translateY(20px)';
+                element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(element);
+            });
+        });
+    </script>
+</body>
+</html>
